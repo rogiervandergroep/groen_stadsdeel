@@ -18,6 +18,9 @@ my_fre <- function(x, a, geb_var) {
     )
 }
 
+test <- my_fre(freq_list_za[["O32"]], "O32", "stadsdelen")
+
+
 ### chitoets om stadsdelen te vergelijken
 
 # type_freq: keuze uit freq_list of freq_list_park

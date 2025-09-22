@@ -98,3 +98,40 @@ my_bind_rows <- function(x = data_groen, i, typevraag = 'mr', weeg) {
 
   return(y)
 }
+
+
+# nieuwe functie voor 32: iets ingewikkelder: ook met totale n op antwoord 1
+my_sum_32_function <- function(var_32, suf) {
+  tabel <- bind_rows(
+    data_groen |>
+      group_by(O32 = {{ var_32 }}) |> # totaal amsterdam
+      summarise(
+        "aantal_ong_{suf}" := n(),
+        "aantal_gew_{suf}" := sum(weeg_ONLINE, na.rm = T)
+      ) |>
+      add_column(
+        spatial_type = 'gemeente',
+        spatial_name = 'Amsterdam'
+      ),
+
+    data_groen |>
+      group_by(O32 = {{ var_32 }}, spatial_name = sd) |> # per stadsdeel
+      summarise(
+        "aantal_ong_{suf}" := n(),
+        "aantal_gew_{suf}" := sum(weeg_ONLINE, na.rm = T)
+      ) |>
+      add_column(
+        spatial_type = 'stadsdelen'
+      ),
+
+    data_groen |>
+      group_by(O32 = {{ var_32 }}, spatial_name = geb) |> # per gebied
+      summarise(
+        "aantal_ong_{suf}" := n(),
+        "aantal_gew_{suf}" := sum(weeg_ONLINE, na.rm = T)
+      ) |>
+      add_column(
+        spatial_type = 'gebieden'
+      )
+  )
+}

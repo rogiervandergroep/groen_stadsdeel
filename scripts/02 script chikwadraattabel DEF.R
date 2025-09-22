@@ -1,7 +1,7 @@
 # met dit script worden de basis chi-tabellen gemaakt
 
 # eerst wordt met dit script  de frequentietabellen gemaakt
-source("scripts/01 script frequentietabel DEF.R")
+source("scripts/01 script freqtab 05 vraag samenvoegen.R")
 
 # nb: van O7 en O8 worden geen chi-toetsen berekend
 
@@ -10,6 +10,7 @@ source("scr/02 functies chi kwadraat toets 1.R")
 
 
 chi2 <- list()
+
 
 ## dit zijn alle multiple response vragen per stadsdeel en gebied
 chi2[['mr']][['stadsdelen']] <- c(
