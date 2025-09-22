@@ -1,6 +1,11 @@
 library(tidyverse)
 library(sf)
 
+source(
+  "http://gitlab.com/os-amsterdam/tools-onderzoek-en-statistiek/-/raw/main/R/OS_get_geoms.R"
+)
+
+
 ggw_gebieden <- os_get_geom("stadsdelen")
 
 

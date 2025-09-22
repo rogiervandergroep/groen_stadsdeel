@@ -21,7 +21,7 @@ mr_vragen_onl <- c(
   "O2d",
   "O2e",
   "O31",
-  "O32",
+  #"O32",
   "O41",
   "O47",
   "O48t"
@@ -40,6 +40,7 @@ sr_vragen_onl <- c(
   "O10_alt",
   "O24",
   "O29",
+  # "O32",
   "O38",
   "O39",
   "O40",
@@ -47,6 +48,7 @@ sr_vragen_onl <- c(
   "O43",
   "O48"
 )
+
 
 sr_vragen_tot <- c(
   "T30",
@@ -82,7 +84,7 @@ freq_list <- list(
 ) |>
   list_flatten()
 
-# 032 overnieuw want twee keuzen
+# 032 toevoegen
 a <- my_sum_32_function(O321, "O321") # eerst genoemde antwoord
 b <- my_sum_32_function(O322, "O322") # tweede antwoord
 

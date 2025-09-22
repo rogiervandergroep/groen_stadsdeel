@@ -80,7 +80,7 @@ my_style_sheet <- function(stadsdeel) {
 
   saveWorkbook(
     wb,
-    glue::glue("reports/tabel_v6_{stadsdeel}.xlsx", overwrite = TRUE)
+    glue::glue("reports/tabel_v7_{stadsdeel}.xlsx", overwrite = TRUE)
   )
 }
 

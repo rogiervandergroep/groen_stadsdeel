@@ -49,6 +49,7 @@ chi2[['mr']][['ggw_gebieden']] <- c(
 sr_vragen_onl_za <- c(
   "O24",
   "O29",
+  "O32", #let op!
   "O38",
   "O39",
   "O40",

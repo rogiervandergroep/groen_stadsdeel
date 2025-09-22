@@ -18,8 +18,6 @@ my_fre <- function(x, a, geb_var) {
     )
 }
 
-test <- my_fre(freq_list_za[["O32"]], "O32", "stadsdelen")
-
 
 ### chitoets om stadsdelen te vergelijken
 
@@ -40,3 +38,8 @@ my_chi_map <- function(i, type_freq, type_vraag, geb_var) {
 
   return(z)
 }
+
+# test <- my_fre(freq_list_za[["O1"]], "O11", "stadsdelen")
+
+#   z <- 1:length(test) |>
+#     map(\(l) chisq.test(test[[]][-1]))

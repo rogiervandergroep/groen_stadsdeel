@@ -147,7 +147,7 @@ vraag_naam[['mr']][[
   'O31'
 ]] <- 'V31: Hoe tevreden bent u over de kwaliteit van het groen in uw woonomgeving?'
 
-vraag_naam[['mr']][[
+vraag_naam[['sr']][[
   'O32'
 ]] <- 'V32: Wat is volgens u het belangrijkst bij het verbeteren van het groen in uw woonomgeving?'
 

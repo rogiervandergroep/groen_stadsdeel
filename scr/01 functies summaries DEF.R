@@ -2,10 +2,9 @@ library(haven)
 library(tidyverse)
 
 # inlezen algemene scripts
-source(
-  "http://gitlab.com/os-amsterdam/tools-onderzoek-en-statistiek/-/raw/main/R/load_all.R"
-)
-
+# source(
+#   "http://gitlab.com/os-amsterdam/tools-onderzoek-en-statistiek/-/raw/main/R/load_all.R"
+# )
 
 # functie om de totale ongewogen respons per indicator per gebied weer te geven
 # labels verwijderd, want zelfde  aan name
@@ -131,7 +130,7 @@ my_sum_32_function <- function(var_32, suf) {
         "aantal_gew_{suf}" := sum(weeg_ONLINE, na.rm = T)
       ) |>
       add_column(
-        spatial_type = 'gebieden'
+        spatial_type = 'ggw_gebieden'
       )
   )
 }

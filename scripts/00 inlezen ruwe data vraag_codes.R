@@ -6,9 +6,14 @@ library(tidyverse)
 # weegvariabele = weeg_ONLINE
 
 # inlezen gebieden en parken
-# inlezen algemene scripts
+# inlezen algemene scripts (niet nodig)
+
+# source(
+#   "http://gitlab.com/os-amsterdam/tools-onderzoek-en-statistiek/-/raw/main/R/load_all.R"
+# )
+
 source(
-  "http://gitlab.com/os-amsterdam/tools-onderzoek-en-statistiek/-/raw/main/R/load_all.R"
+  "http://gitlab.com/os-amsterdam/tools-onderzoek-en-statistiek/-/raw/main/R/OS_get_geoms.R"
 )
 
 source("scr/00 gebieden.R")
@@ -246,9 +251,13 @@ vraag[['mr']][['O31']] <- data_groen |>
 
 
 # Wat is volgens u het belangrijkst bij het verbeteren van het groen in uw woonomgeving 2 keuzes
-vraag[['mr']][['O32']] <- data_groen |>
-  select(O321, O322) |>
-  names()
+# vraag[['mr']][['O32']] <- data_groen |>
+#   select(O321, O322) |>
+#   names()
+
+# let op !
+vraag[['sr']][['O32']] <- c('O32')
+
 
 # open vraag: toelichting op bovenstaande
 vraag[['sr']][['O32_Other5']] <- c('O32_Other5')
