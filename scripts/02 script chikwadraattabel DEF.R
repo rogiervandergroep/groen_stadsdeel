@@ -55,7 +55,8 @@ sr_vragen_onl_za <- c(
   "O40",
   "O42",
   "O43",
-  "O48"
+  "O48",
+  "O49_Codes"
 )
 
 chi2[['sr']][['stadsdelen']] <- c(sr_vragen_tot, sr_vragen_onl_za) |>

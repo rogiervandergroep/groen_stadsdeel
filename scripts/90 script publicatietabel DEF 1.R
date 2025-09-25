@@ -3,7 +3,7 @@ library(tidyverse)
 source("scr/00 gebieden.R")
 
 pub_tabel <- read_rds(
-  "data/processed/result_list.rds"
+  "data/processed/result_list1.rds"
 )
 
 ## filter waarbij n < 50 per vraag verdwijnt
@@ -17,7 +17,6 @@ my_bind_rows <- function(x) {
     pub_tabel[["sd"]][[x]],
     pub_tabel[["geb"]][[x]],
     pub_tabel[["park"]][[x]],
-    pub_tabel[["park_O7_O8_O9"]][[x]],
     pub_tabel[["achtergrond"]][[x]],
   )
 }
@@ -61,7 +60,8 @@ excel_list[["stadsbreed_sd"]] <- c(
   "T46",
   "O47",
   "O48",
-  "O48t"
+  "O48t",
+  "O49_Codes"
 ) |>
   map_df(\(v) my_bind_rows(v))
 
@@ -81,18 +81,10 @@ excel_list[["spec_groen_O6"]] <- c(
   map_df(\(v) my_bind_rows(v))
 
 # deze cijfers zijn niet naar stadsdeel maar naar park gevraagd
-excel_list[["spec_groen_O7_O8"]] <- c(
-  "O7",
-  "O8"
-) |>
-  map_df(\(v) my_bind_rows(v))
-
-# rapportcijfers in een apart tabblad
-excel_list[["spec_groen_O9"]] <- pub_tabel[["park_O7_O8_O9"]][["O9"]]
-
+excel_list[["spec_groen_O7_O8_O9"]] <- pub_tabel[["park_O7_O8_O9"]]
 
 # deze cijfers zijn niet naar stadsdeel maar naar park gevraagd
-excel_list[["spec_groen_O11_21"]] <- c(
+excel_list[["spec_groen_O11_O21"]] <- c(
   "O111",
   "O12",
   "O13",
@@ -103,6 +95,12 @@ excel_list[["spec_groen_O11_21"]] <- c(
   "O18",
   "O19",
   "O21"
+) |>
+  map_df(\(v) my_bind_rows(v))
+
+
+excel_list[["spec_groen_O22_open"]] <- c(
+  "O22"
 ) |>
   map_df(\(v) my_bind_rows(v))
 
@@ -155,22 +153,30 @@ my_stadsdeel_split_av <- function(sheet, gebied) {
     filter(spatial_name %in% gebied)
 }
 
+my_kolom_split <- function(sheet, gebied) {
+  excel_list[[sheet]] |>
+    select(any_of(c("vraag", "labels", "value", gebied)))
+}
 
+eindlist = list()
 # hier wordt een list gemaakt met stadsdeel als eerste dimensie
 eindlist <- stadsdelen |>
   map(\(x) {
-    #x = "Centrum"
-
     list(
-      # alle stadsdelen
+      # alle stadsdelen en ggw-gebieden
       rol_sted_groen = my_stadsdeel_split_av("rol_sted_groen", geb[[x]]),
       gebruik_groen = my_stadsdeel_split_av("gebruik_groen", geb[[x]]),
       stadsbreed_sd = my_stadsdeel_split_av("stadsbreed_sd", geb[[x]]),
       groen_in_woon = my_stadsdeel_split_av("groen_in_woon", geb[[x]]),
       priv_groen = my_stadsdeel_split_av("priv_groen", geb[[x]]),
+      spec_groen_O6 = my_stadsdeel_split_av("spec_groen_O6", geb[[x]]),
 
-      # niet alle stadsdelen
-      respons = my_stadsdeel_split_av("respons", geb_kort[[x]]),
+      # niet alle stadsdelen, alleen ggw-gebieden
+      respons = my_kolom_split(
+        "respons",
+        geb_kort[[x]]
+      ),
+
       gebruik_groen_open = my_stadsdeel_split_av(
         "gebruik_groen_open",
         geb_kort[[x]]
@@ -183,19 +189,25 @@ eindlist <- stadsdelen |>
         "groen_in_woon_open",
         geb_kort[[x]]
       ),
-      priv_groen_open = my_stadsdeel_split_av("priv_groen_open", geb_kort[[x]]),
 
-      # alles
-      spec_groen_O6 = excel_list[["spec_groen_O6"]],
+      priv_groen_open = my_stadsdeel_split_av(
+        "priv_groen_open",
+        geb_kort[[x]]
+      ),
 
-      # allen parken van het stadsdeel
-      spec_groen_O7_O8 = my_stadsdeel_split_av(
-        "spec_groen_O7_O8",
+      # selectie kolommen alleen parken van het stadsdeel
+      spec_groen_O7_O8_O9 = my_kolom_split(
+        "spec_groen_O7_O8_O9",
         parken_sd[[x]]
       ),
-      spec_groen_O9 = my_stadsdeel_split_av("spec_groen_O9", parken_sd[[x]]),
-      spec_groen_O11 = my_stadsdeel_split_av(
-        "spec_groen_O11_21",
+
+      spec_groen_O11_O21 = my_stadsdeel_split_av(
+        "spec_groen_O11_O21",
+        parken_sd[[x]]
+      ),
+
+      spec_groen_O22_open = my_stadsdeel_split_av(
+        "spec_groen_O22_open",
         parken_sd[[x]]
       )
     )

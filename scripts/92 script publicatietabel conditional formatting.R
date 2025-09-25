@@ -1,4 +1,5 @@
 library(openxlsx)
+library(purrr)
 
 
 # Dit wordt de heading van elke tabel
@@ -23,14 +24,20 @@ total_style <- createStyle(
   fgFill = "#dcddee"
 )
 
-# significatiekleur
-sign_style <- createStyle(
+# significatiekleur positief
+sign_style_p <- createStyle(
+  textDecoration = 'bold',
+  fontColour = "#55b462"
+)
+
+# significatiekleur negatief
+sign_style_n <- createStyle(
   textDecoration = 'bold',
   fontColour = "#ec0000"
 )
 
 my_style_sheet <- function(stadsdeel) {
-  x = final_table2[[stadsdeel]]
+  x = final_table3[[stadsdeel]]
 
   sheet_nr <- c(1:length(x))
 
@@ -73,8 +80,18 @@ my_style_sheet <- function(stadsdeel) {
       cols = 1:ncol(x[[i]]),
       rows = 2:(nrow(x[[i]]) + 1),
       "contains",
-      rule = "~*",
-      style = sign_style
+      rule = "\U207A",
+      style = sign_style_p
+    )
+
+    conditionalFormatting(
+      wb,
+      sheet_name,
+      cols = 1:ncol(x[[i]]),
+      rows = 2:(nrow(x[[i]]) + 1),
+      "contains",
+      rule = "\u207B",
+      style = sign_style_n
     )
   }
 
@@ -85,5 +102,5 @@ my_style_sheet <- function(stadsdeel) {
 }
 
 
-names(final_table2) |>
+names(final_table3) |>
   walk(\(x) my_style_sheet(stadsdeel = x))

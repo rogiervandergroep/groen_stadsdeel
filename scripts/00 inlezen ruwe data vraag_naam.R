@@ -154,7 +154,7 @@ vraag_naam[['sr']][[
 # open vraag
 vraag_naam[['sr']][[
   'O32_Other5'
-]] <- 'O32_Other5: Wat is volgens u het belangrijkst bij het verbeteren van het groen in uw woonomgeving?'
+]] <- 'O32:  Wat is volgens u het belangrijkst bij het verbeteren van het groen in uw woonomgeving?'
 
 
 vraag_naam[['sr']][[
@@ -163,7 +163,7 @@ vraag_naam[['sr']][[
 
 vraag_naam[['mr']][[
   'T34'
-]] <- 'V34: Als u vanuit uw huis naar de straat kijkt, ziet u dan groen?'
+]] <- 'V34: Heeft u een tuin, balkon of dakterras?'
 
 vraag_naam[['sr']][[
   'T35'
@@ -210,7 +210,7 @@ vraag_naam[['sr']][[
 # v44 is open vraag
 vraag_naam[['sr']][[
   'O44'
-]] <- 'v44: Waarom niet??'
+]] <- 'v44: U geeft aan dat u wel een stukje groen of een tuin zou willen verzorgen, maar dit nu niet doet. Waarom niet?'
 
 
 vraag_naam[['sr']][[
@@ -230,16 +230,16 @@ vraag_naam[['sr']][[
 ]] <- 'V48: Wat vindt u van de organisatie van festivals en evenementen in groene gebieden in Amsterdam?'
 
 vraag_naam[['mr']][['O48t']] <- c(
-  'V48t: Onder welke voorwaarde(n) vindt u dat festivals en evenementen wel in het groen  georganiseerd kunnen worden?'
+  'V48t: Onder welke voorwaarde(n) vindt u dat festivals en evenementen wel in het groen georganiseerd kunnen worden?'
 )
 
 vraag_naam[['sr']][[
   'O48_toelichting_nw_Other6'
-]] <- 'V48 toelichting bij anders.'
+]] <- 'V48 Onder welke voorwaarde(n) vindt u dat festivals en evenementen wel in het groen georganiseerd kunnen worden?.'
 
 
 vraag_naam[['sr']][[
-  'O49'
+  'O49_Codes'
 ]] <- 'V49: Vermijdt u  weleens plekken in het groen in Amsterdam of Weesp omdat u zich daar onveilig voelt?'
 
 

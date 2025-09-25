@@ -132,17 +132,13 @@ my_signif <- function(x) {
 }
 
 
-freq_list_park_slim2 <- freq_list_park_slim[
-  names(freq_list_park_slim) %in% c("O7", "O8", "O9") == FALSE
-]
-
 # zorg voor de juiste volgorde van de items in de frequentielijsten
 sorted_names <- gtools::mixedsort(names(freq_list_slim_za))
-sorted_names_parken <- gtools::mixedsort(names(freq_list_park_slim2))
+sorted_names_parken <- gtools::mixedsort(names(freq_list_park_slim))
 
 # zet de onderliggende items in de freq_lijsten op de juiste volgorde
 sorted_freq_list <- freq_list_slim_za[sorted_names]
-sorted_freq_list_parken <- freq_list_park_slim2[sorted_names_parken]
+sorted_freq_list_parken <- freq_list_park_slim[sorted_names_parken]
 
 # zet de onderliggende items in de chikwadraat lijsten op de juisten volgorde
 sorted_chi_pub_sd <- chi_publiekstabel_sd[sorted_names] |>
@@ -184,13 +180,10 @@ result_list$park <- sorted_freq_list_parken |>
   map(\(x) select(x, -(value_clean)))
 
 # data zonder chikwadraat
-result_list$park_O7_O8_O9 <- freq_list_park_slim[
-  names(freq_list_park_slim) %in% c("O7", "O8", "O9") == TRUE
-] |>
-  map(\(x) select(x, -(value_clean)))
+result_list$park_O7_O8_O9 <- freq_park_789_wide
 
 # achtergrond ook zonder chikwadraat
-result_list$achtergrond <- freq_list_av
+result_list$achtergrond <- freq_list_slim_av
 
 # toevoegen open vragen
 result_list[["sd"]] <- c(
@@ -205,4 +198,4 @@ result_list[["park"]] <- c(
   result_list[["park"]],
   freq_openvragen[["openvragen_park"]]
 )
-write_rds(result_list, "data/processed/result_list.rds")
+write_rds(result_list, "data/processed/result_list1.rds")

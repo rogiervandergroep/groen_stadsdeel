@@ -46,7 +46,8 @@ sr_vragen_onl <- c(
   "O40",
   "O42",
   "O43",
-  "O48"
+  "O48",
+  'O49_Codes'
 )
 
 

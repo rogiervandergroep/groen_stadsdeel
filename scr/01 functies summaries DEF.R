@@ -21,6 +21,11 @@ my_total_n <- function(x) {
 ### deze functie maakt de frequentietabellen voor de multirespone vragen
 my_summarise <- function(x, i, geb_var, wf) {
   # dit is een lijstje met labels van de multiresonse vragen
+
+  #  x is dataset datagroen
+  #  i zijn de antwoordopties van de multiresponse vragen
+  #  geb_var is Amsterdam (NULL) of stadsdelen of ggw-gebieden
+  #  wf is weegfactor
   labels <- x |>
     select(all_of(i)) |>
     names() |>
@@ -53,11 +58,12 @@ my_summarise <- function(x, i, geb_var, wf) {
   return(y)
 }
 
+
 # sd       : stadsdelen zonder westpoort factor
 # stadsdeel: stadsdelen met westpoort (incl. westpoort) character
 
 # i is de looping vector met daarin de antwoordopties
-my_bind_rows <- function(x = data_groen, i, typevraag = 'mr', weeg) {
+my_bind_rows <- function(x = data_groen, i, typevraag, weeg) {
   # frequentietabel van amsterdam
   y <- bind_rows(
     x |>

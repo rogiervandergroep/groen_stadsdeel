@@ -225,6 +225,12 @@ vraag[['mr']][['O48t']] <- data_groen |>
 # open vraag bij 'anders'
 vraag[['sr']][['O48_toelichting_nw_Other6']] <- c('O48_toelichting_nw_Other6')
 
+# vermijdt u wel eens plekken? (ja, nee, weet niet)
+vraag[['sr']][['O49_Codes']] <- c('O49_Codes')
+
+# v49 is een lijst met coorindinaten - open vraag
+# vraag[['sr']][['O49']] <- c('O49')
+
 # v49 is open vraag: Vermijdt u in Amsterdam of Weesp weleens plekken in het groen omdat u zich daar onveilig voelt?
 vraag[['sr']][['O49_toelichting']] <- c('O49_toelichting')
 
