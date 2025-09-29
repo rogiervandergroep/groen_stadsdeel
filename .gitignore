@@ -60,3 +60,9 @@ rsconnect/
 
 *.docx.url
 
+
+# Quarto files
+voorbeeld Quarto_files/
+voorbeeld-Quarto_files/
+*.html
+*.qmd

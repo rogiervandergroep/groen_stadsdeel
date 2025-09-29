@@ -35,7 +35,7 @@ freq_list_park_O7 <- parken |>
 
 # v8 hoe vaak komt u in park
 freq_list_park_O8 <- parken |>
-  map_df(\(p) my_bind_rows(i = p, typevraag = 'O8', weeg = weeg_ONLINE)) |>
+  map_df(\(p) my_bind_rows(i = p, typevraag = 'O8', weeg = weeg_gebied)) |>
   rename(park_naam = vraag) |>
   add_column(
     vraag = 'V8: Frequentie van bezoek van parkachtig groengebieden in Noord'
@@ -56,7 +56,7 @@ freq_list_park_O9 <- data_groen |>
   summarise(
     aantal_ong = n(),
     aantal_gew = sum(weeg_ONLINE),
-    gem_rapportcijfer = weighted.mean(value, weeg_ONLINE, na.rm = T)
+    gem_rapportcijfer = weighted.mean(value, weeg_ONLINE)
   ) |>
   left_join(park_labels[, c("name", "spatial_name")], by = 'name') |>
   add_column(
@@ -65,48 +65,8 @@ freq_list_park_O9 <- data_groen |>
     spatial_type = 'parken'
   ) |>
   my_total_n()
-
-# functie voor omzetting naar wide format data
-my_end_table_w <- function(x) {
-  x |>
-    ungroup() |>
-    filter(value != 'No') |>
-    filter(totaal_gew > 49) |>
-    select(any_of(c(
-      "vraag",
-      "labels",
-      "value",
-      "aandeel_gew",
-      "spatial_name"
-    ))) |>
-    mutate(aandeel_gew = str_glue("{round(aandeel_gew*100)}%")) |>
-    pivot_wider(
-      names_from = c(spatial_name),
-      values_from = c(aandeel_gew)
-      #values_fill = "0%"
-    )
-}
-
-# functie om totale n naar wide format om te zetten
-my_end_table_n <- function(x) {
-  x |>
-    ungroup() |>
-    filter(totaal_gew > 49) |>
-    select(vraag, spatial_name, totaal_gew) |>
-
-    mutate(totaal_gew = as.character(round(totaal_gew))) |>
-    distinct(vraag, spatial_name, .keep_all = T) |>
-    pivot_wider(
-      names_from = c(spatial_name),
-      values_from = c(totaal_gew)
-      #values_fill = "-"
-    ) |>
-    add_column(value = "(n)", labels = "totaal aantal respondenten")
-  #  mutate(x, name = str_remove(vraag, ":.*$")) |>
-  #  mutate(x, name = str_sub(name, 2))|>
-  #  mutate(x, name = str_glue("0{name}")
-}
-
+# inlezen script met
+source("scr/01 functies wide format.R")
 
 freq_park_789_wide <- bind_rows(
   # vraag7
@@ -129,6 +89,5 @@ freq_park_789_wide <- bind_rows(
     my_end_table_n(),
 
   freq_list_park_O9 |>
-    rename(aandeel_gew = gem_rapportcijfer) |>
     my_end_table_w()
 )

@@ -96,8 +96,38 @@ vraag[['sr']][['O5']] <- 'O5'
 
 # let op weeg op gebieden
 vraag[['mr']][['O6']] <- data_groen |>
-  select(O6_alt01:O6_alt54) |>
+  select(starts_with("O6_alt")) |>
   names()
+
+# als "O6_alt53" "O6_alt54"  op yes staan kan het gebeuren dat andere 06_alts op missing staan
+# die moeten op No anders worden ze niet meegenomen in berekening
+
+cols <- data_groen |>
+  select(O6_alt01:O6_alt52, O6_alt54) |>
+  names()
+
+p_labels <- data_groen |>
+  select(starts_with("O6_alt")) |>
+  names() |>
+  map_df(
+    \(i) {
+      tibble(
+        name = i,
+        labels = attr(data_groen[[i]], "label")
+      )
+    }
+  )
+
+
+# labels verdwijen
+data_groen <- data_groen |>
+  mutate(across(
+    cols,
+    ~ case_when(
+      O6_alt53 == "Yes" ~ "No",
+      TRUE ~ .x
+    )
+  ))
 
 
 ### 07, 08 en 09 zijn per park gesteld ---

@@ -127,48 +127,6 @@ freq_list_slim_av <- freq_list_slim[vragen_achtergr] # alleen achtegrondvragen
 
 #### om zetten respons naar wide format
 
-# functie voor omzetting naar wide format data
-my_end_table_w <- function(x) {
-  x |>
-    ungroup() |>
-    #filter(value != 'No') |>
-    #filter(totaal_gew > 49) |>
-    select(any_of(c(
-      "vraag",
-      "labels",
-      "value",
-      "aandeel_gew",
-      "spatial_name"
-    ))) |>
-    mutate(aandeel_gew = str_glue("{round(aandeel_gew*100)}%")) |>
-    pivot_wider(
-      names_from = c(spatial_name),
-      values_from = c(aandeel_gew)
-      #values_fill = "0%"
-    )
-}
-
-# functie om totale n naar wide format om te zetten
-my_end_table_n <- function(x) {
-  x |>
-    ungroup() |>
-    filter(totaal_gew > 49) |>
-    select(vraag, spatial_name, totaal_gew) |>
-
-    mutate(totaal_gew = as.character(round(totaal_gew))) |>
-    distinct(vraag, spatial_name, .keep_all = T) |>
-    pivot_wider(
-      names_from = c(spatial_name),
-      values_from = c(totaal_gew)
-      #values_fill = "-"
-    ) |>
-    add_column(value = "(n)", labels = "totaal aantal respondenten")
-  #  mutate(x, name = str_remove(vraag, ":.*$")) |>
-  #  mutate(x, name = str_sub(name, 2))|>
-  #  mutate(x, name = str_glue("0{name}")
-}
-
-#
 freq_list_slim_av <- list(
   geslacht = bind_rows(
     freq_list_slim_av[["geslacht"]] |>

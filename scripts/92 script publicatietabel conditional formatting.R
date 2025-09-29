@@ -36,8 +36,8 @@ sign_style_n <- createStyle(
   fontColour = "#ec0000"
 )
 
-my_style_sheet <- function(stadsdeel) {
-  x = final_table3[[stadsdeel]]
+my_style_sheet <- function(tabel, stadsdeel) {
+  x = tabel[[stadsdeel]]
 
   sheet_nr <- c(1:length(x))
 
@@ -102,5 +102,10 @@ my_style_sheet <- function(stadsdeel) {
 }
 
 
-names(final_table3) |>
-  walk(\(x) my_style_sheet(stadsdeel = x))
+names(final_table) |>
+  walk(\(x) {
+    my_style_sheet(
+      tabel = final_table,
+      stadsdeel = x
+    )
+  })

@@ -5,6 +5,7 @@ source("scripts/00 inlezen ruwe data vraag_naam.R")
 # inlezen functies en libraries
 source("scr/01 functies summaries DEF.R")
 
+
 ### eventueel check variabelen
 # names(vraag[['mr']])
 # names(vraag[['sr']])
@@ -84,6 +85,12 @@ freq_list <- list(
     set_names(sr_vragen_onl)
 ) |>
   list_flatten()
+
+# labels zijn verloren gegaan: opnieuw plakken
+freq_list[["O6"]] <- freq_list[["O6"]] |>
+  select(-labels) |>
+  left_join(p_labels, by = ("name"))
+
 
 # 032 toevoegen
 a <- my_sum_32_function(O321, "O321") # eerst genoemde antwoord
