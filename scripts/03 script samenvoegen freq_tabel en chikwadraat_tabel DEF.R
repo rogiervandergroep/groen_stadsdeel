@@ -8,7 +8,7 @@ source("scr/02 functies chi kwadraat toets 2.R")
 # stap 1: maak een mooie tabel met gebieden en sd_residuen per antwoord
 
 mr_vragen <- c(mr_vragen_onl, mr_vragen_tot, mr_vragen_geb)
-sr_vragen <- c(sr_vragen_onl_za, sr_vragen_tot)
+sr_vragen <- c(sr_vragen_onl_za, sr_vragen_geb, sr_vragen_tot)
 
 # nb : geen chitoets voor mr_vragen_O10_alt en sr_vragen_O10_alt
 

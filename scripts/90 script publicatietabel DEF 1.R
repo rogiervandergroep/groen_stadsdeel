@@ -104,6 +104,12 @@ excel_list[["spec_groen_O22_open"]] <- c(
 ) |>
   map_df(\(v) my_bind_rows(v))
 
+excel_list[["spec_groen_gebr"]] <- c(
+  "groen_act_buitenshuis",
+  "gebruik_parkachtiggroen"
+) |>
+  map_df(\(v) my_bind_rows(v))
+
 
 # basis_list5: groen in de woonomgeving
 # v28 v29 v30 tbomen v31 v32 v33
@@ -114,7 +120,8 @@ excel_list[["groen_in_woon"]] <- c(
   "Tbomen",
   "O31",
   "O32",
-  "T33"
+  "T33",
+  "KIND_2"
 ) |>
   map_df(\(v) my_bind_rows(v))
 
@@ -139,7 +146,8 @@ excel_list[["priv_groen"]] <- c(
   "T46",
   "O47",
   "O48",
-  "O48t"
+  "O48t",
+  "privaat_groen"
 ) |>
   map_df(\(v) my_bind_rows(v))
 
@@ -170,6 +178,7 @@ eindlist <- stadsdelen |>
       groen_in_woon = my_stadsdeel_split_av("groen_in_woon", geb[[x]]),
       priv_groen = my_stadsdeel_split_av("priv_groen", geb[[x]]),
       spec_groen_O6 = my_stadsdeel_split_av("spec_groen_O6", geb[[x]]),
+      spec_groen_gebr = my_stadsdeel_split_av("spec_groen_gebr", geb[[x]]),
 
       # niet alle stadsdelen, alleen ggw-gebieden
       respons = my_kolom_split(

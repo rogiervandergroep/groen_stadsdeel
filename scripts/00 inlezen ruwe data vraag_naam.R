@@ -246,3 +246,20 @@ vraag_naam[['sr']][[
 vraag_naam[['sr']][[
   'O49_toelichting'
 ]] <- 'V49 toelichting: Als u dat wilt, kunt u uw antwoord hieronder toelichten.'
+
+
+# KIND_2 weegonline:
+vraag_naam[['sr']][[
+  'KIND_2'
+]] <- 'Kind_2: Hoe tevreden bent u met het groen op en rond het schoolplein en/of andere plekken waar de kinderen buitenspelen?'
+
+# weeg_online
+vraag_naam[['sr']][['groen_act_buitenshuis']] <- 'groen_act_buitenshuis'
+
+# weeg_gebied: maakt gebruik van parkachtig groen
+vraag_naam[['sr']][['gebruik_parkachtiggroen']] <- c(
+  'maakt gebruik van parkachtig groen'
+)
+
+# weeg_tot: heeft een buitenruimte (tuin, gedeelde tuin, volkstuin, balkon, dakterras/daktuin, geveltuin)
+vraag_naam[['sr']][['privaat_groen']] <- 'heeft een buitenruimte'

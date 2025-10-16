@@ -28,7 +28,10 @@ mr_vragen_onl <- c(
   "O48t"
 )
 mr_vragen_tot <- c("T4", "T26", "T34", "T46")
+
+# vragen die naar weeg_gebied worden gewogen
 mr_vragen_geb <- c("O6") # i.e. weeg_gebied
+sr_vragen_geb <- c("gebruik_parkachtiggroen") # i.e. weeg_gebied
 
 sr_vragen_onl <- c(
   "lft4cat",
@@ -41,14 +44,16 @@ sr_vragen_onl <- c(
   "O10_alt",
   "O24",
   "O29",
-  # "O32",
+  # "O32", wordt opnieuw berekend
   "O38",
   "O39",
   "O40",
   "O42",
   "O43",
   "O48",
-  'O49_Codes'
+  'O49_Codes',
+  'KIND_2',
+  'groen_act_buitenshuis'
 )
 
 
@@ -59,7 +64,8 @@ sr_vragen_tot <- c(
   "T33",
   "T35",
   "T36",
-  "T37"
+  "T37",
+  "privaat_groen"
 )
 
 
@@ -82,7 +88,11 @@ freq_list <- list(
 
   sr_vragen_onl |>
     map(\(v) my_bind_rows(i = v, typevraag = 'sr', weeg = weeg_ONLINE)) |>
-    set_names(sr_vragen_onl)
+    set_names(sr_vragen_onl),
+
+  sr_vragen_geb |>
+    map(\(v) my_bind_rows(i = v, typevraag = 'sr', weeg = weeg_gebied)) |>
+    set_names(sr_vragen_geb)
 ) |>
   list_flatten()
 

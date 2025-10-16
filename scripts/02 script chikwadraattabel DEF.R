@@ -56,10 +56,17 @@ sr_vragen_onl_za <- c(
   "O42",
   "O43",
   "O48",
-  "O49_Codes"
+  "O49_Codes",
+  'KIND_2',
+  'groen_act_buitenshuis'
 )
 
-chi2[['sr']][['stadsdelen']] <- c(sr_vragen_tot, sr_vragen_onl_za) |>
+
+chi2[['sr']][['stadsdelen']] <- c(
+  sr_vragen_tot,
+  sr_vragen_geb,
+  sr_vragen_onl_za
+) |>
   map(\(j) {
     my_chi_map(
       type_freq = freq_list_za,
@@ -68,9 +75,13 @@ chi2[['sr']][['stadsdelen']] <- c(sr_vragen_tot, sr_vragen_onl_za) |>
       type_vraag = 'sr'
     )
   }) |>
-  set_names(c(sr_vragen_tot, sr_vragen_onl_za))
+  set_names(c(sr_vragen_tot, sr_vragen_geb, sr_vragen_onl_za))
 
-chi2[['sr']][['ggw_gebieden']] <- c(sr_vragen_tot, sr_vragen_onl_za) |>
+chi2[['sr']][['ggw_gebieden']] <- c(
+  sr_vragen_tot,
+  sr_vragen_geb,
+  sr_vragen_onl_za
+) |>
   map(\(j) {
     my_chi_map(
       type_freq = freq_list_za,
@@ -79,7 +90,7 @@ chi2[['sr']][['ggw_gebieden']] <- c(sr_vragen_tot, sr_vragen_onl_za) |>
       type_vraag = 'sr'
     )
   }) |>
-  set_names(c(sr_vragen_tot, sr_vragen_onl_za))
+  set_names(c(sr_vragen_tot, sr_vragen_geb, sr_vragen_onl_za))
 
 # dit zijn de chitoetsen voor de parken
 chi2[['sr']][['parken']] <- sr_vragen_O10_alt |>

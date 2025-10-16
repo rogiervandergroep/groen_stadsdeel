@@ -104,7 +104,11 @@ vragen_onl_tot <- c(
   "O42",
   "O43",
   "O48",
-  "O49_Codes"
+  "O49_Codes",
+  "groen_act_buitenshuis",
+  "gebruik_parkachtiggroen",
+  "KIND_2",
+  "privaat_groen"
 )
 
 vragen_achtergr <- c(

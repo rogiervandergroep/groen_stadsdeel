@@ -343,3 +343,16 @@ vraag[['sr']][['O43']] <- c('O43')
 
 # V44: U geeft aan dat u (misschien) wel een stukje groen of een tuin zou willen verzorgen, maar dit nu (nog) niet doet. Waarom niet?
 vraag[['sr']][['O44']] <- c('O44')
+
+
+# KIND_2 weegonline: Hoe tevreden bent u met het groen op en rond het schoolplein en/of andere plekken waar de kinderen buitenspelen?
+vraag[['sr']][['KIND_2']] <- c('KIND_2')
+
+# weeg_online
+vraag[['sr']][['groen_act_buitenshuis']] <- c('groen_act_buitenshuis')
+
+# weeg_gebied: maakt gebruik van parkachtig groen
+vraag[['sr']][['gebruik_parkachtiggroen']] <- c('gebruik_parkachtiggroen')
+
+# weeg_tot: heeft een buitenruimte (tuin, gedeelde tuin, volkstuin, balkon, dakterras/daktuin, geveltuin)
+vraag[['sr']][['privaat_groen']] <- c('privaat_groen')

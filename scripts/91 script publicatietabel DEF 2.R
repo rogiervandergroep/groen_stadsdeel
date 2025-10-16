@@ -130,6 +130,7 @@ tab_volgorde <- c(
   "groen_in_woon_open",
   "priv_groen",
   "priv_groen_open",
+  "spec_groen_gebr",
   "spec_groen_O6",
   "spec_groen_O7_O8_O9",
   "spec_groen_O11_O21",
